@@ -2,14 +2,15 @@
 
 try {
   $pdo = new PDO(
-    'mysql:host=localhost;dbname=test_db;charset=utf8;',
+    'mysql:host=db;dbname=test_db;charset=utf8;',
     'test_user',
     'test_password',
   );
 
-  $statement = $pdo -> prepare('CREATE TABLE posts (id int, title varchar(100))');
+  $statement = $pdo -> prepare('SELECT * FROM posts;');
 
-  $statement -> execute();
+  $result = $statement -> execute();
+  echo $result;
 } catch (PDOException $e) {
   echo $e;
   echo $e -> getMessage();
