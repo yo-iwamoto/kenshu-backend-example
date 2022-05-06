@@ -22,9 +22,3 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     ports:
       - ${DB_PORT}:3306
-
-  composer:
-    image: composer:latest
-    command: "composer install"
-    volumes:
-      - ./:/app
