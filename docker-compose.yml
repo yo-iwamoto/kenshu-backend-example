@@ -1,0 +1,30 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    volumes:
+      - ./html:/var/www/html
+    ports:
+      - ${WEB_PORT}:80
+
+  db:
+    image: mysql:8
+    volumes:
+      - ./php.ini:/usr/local/etc/php/
+      - ./db/mysql:/var/lib/mysql
+      - ./db/config/my.cnf:/etc/mysql/conf.d/my.cnf
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    ports:
+      - ${DB_PORT}:3306
+
+  composer:
+    image: composer:latest
+    command: "composer install"
+    volumes:
+      - ./:/app
