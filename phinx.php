@@ -1,5 +1,8 @@
 <?php
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 return
 [
     'paths' => [
@@ -9,31 +12,31 @@ return
     'environments' => [
         'default_migration_table' => 'phinxlog',
         'default_environment' => 'development',
-        'production' => [
-            'adapter' => 'mysql',
-            'host' => '',
-            'name' => '',
-            'user' => '',
-            'pass' => '',
-            'port' => '',
-            'charset' => 'utf8',
-        ],
+        // 'production' => [
+        //     'adapter' => 'mysql',
+        //     'host' => '',
+        //     'name' => $_ENV['MYSQL_DATABASE'],
+        //     'user' => $_ENV['MYSQL_USER'],
+        //     'pass' => $_ENV['MYSQL_PASSWORD'],
+        //     'port' => $_ENV['MYSQL_PORT'],
+        //     'charset' => 'utf8',
+        // ],
         'development' => [
             'adapter' => 'mysql',
             'host' => '127.0.0.1',
-            'name' => 'test_db',
-            'user' => 'test_user',
-            'pass' => 'test_password',
-            'port' => '13306',
+            'name' => $_ENV['MYSQL_DEV_DATABASE'],
+            'user' => $_ENV['MYSQL_DEV_USER'],
+            'pass' => $_ENV['MYSQL_DEV_PASSWORD'],
+            'port' => $_ENV['MYSQL_DEV_PORT'],
             'charset' => 'utf8',
         ],
         'testing' => [
             'adapter' => '',
-            'host' => '',
-            'name' => '',
-            'user' => '',
-            'pass' => '',
-            'port' => '',
+            'host' => '127.0.0.1',
+            'name' => $_ENV['MYSQL_TEST_DATABASE'],
+            'user' => $_ENV['MYSQL_TEST_USER'],
+            'pass' => $_ENV['MYSQL_TEST_PASSWORD'],
+            'port' => $_ENV['MYSQL_TEST_PORT'],
             'charset' => 'utf8',
         ]
     ],

@@ -16,9 +16,9 @@ services:
       - ./db/mysql:/var/lib/mysql
       - ./db/config/my.cnf:/etc/mysql/conf.d/my.cnf
     environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_DEV_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DEV_DATABASE}
+      - MYSQL_USER=${MYSQL_DEV_USER}
+      - MYSQL_PASSWORD=${MYSQL_DEV_PASSWORD}
     ports:
-      - ${DB_PORT}:3306
+      - ${MYSQL_DEV_PORT}:3306
